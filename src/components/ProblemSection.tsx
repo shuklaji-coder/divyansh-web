@@ -96,32 +96,36 @@ export const ProblemSection: React.FC = () => {
                 key={prob.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8, transition: { type: 'spring', stiffness: 300 } }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="glass-card p-6 sm:p-8 rounded-2xl relative overflow-hidden group hover:border-red-500/30"
+                className="glass-card p-6 sm:p-8 rounded-2xl relative overflow-hidden group hover:border-red-500/40 hover:shadow-[0_10px_30px_rgba(239,68,68,0.15)] transition-all duration-300"
               >
-                <div className="flex items-center justify-between mb-6">
-                  <div className="p-3 rounded-xl bg-red-950/60 border border-red-500/30 text-red-400 group-hover:scale-110 transition-transform">
-                    <Icon className="w-6 h-6" />
+                {/* Subtle card glow on hover */}
+                <div className="absolute -top-24 -right-24 w-48 h-48 bg-red-500/10 rounded-full blur-3xl group-hover:bg-red-500/20 transition-all duration-500 pointer-events-none" />
+
+                <div className="flex items-center justify-between mb-6 relative z-10">
+                  <div className="p-3 rounded-xl bg-red-950/60 border border-red-500/30 text-red-400 group-hover:scale-110 group-hover:bg-red-900/60 transition-transform">
+                    <Icon className="w-6 h-6 animate-pulse" />
                   </div>
-                  <span className="text-2xl font-extrabold font-mono text-slate-700 group-hover:text-red-500/40 transition-colors">
+                  <span className="text-2xl font-extrabold font-mono text-slate-700 group-hover:text-red-500/60 transition-colors">
                     {prob.id}
                   </span>
                 </div>
 
-                <div className="inline-block px-2.5 py-1 mb-3 rounded-md bg-red-500/10 text-red-400 font-mono text-[11px]">
+                <div className="inline-block px-2.5 py-1 mb-3 rounded-md bg-red-500/10 text-red-400 font-mono text-[11px] relative z-10">
                   {prob.badge}
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-heading mb-3 group-hover:text-red-400 transition-colors">
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-heading mb-3 group-hover:text-red-400 transition-colors relative z-10">
                   {prob.title}
                 </h3>
 
-                <p className="text-sm text-slate-400 leading-relaxed mb-6">
+                <p className="text-sm text-slate-400 leading-relaxed mb-6 relative z-10">
                   {prob.desc}
                 </p>
 
-                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
+                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono relative z-10">
                   <span className="text-slate-500">DIAGNOSTIC</span>
                   <span className="text-red-400 font-bold">{prob.metric}</span>
                 </div>
